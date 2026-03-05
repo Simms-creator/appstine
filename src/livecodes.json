@@ -1,0 +1,32 @@
+{
+  "title": "Untitled Project",
+  "description": "",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "htmlAttrs": "lang=\"en\" class=\"\"",
+  "tags": [],
+  "activeEditor": "script",
+  "markup": {
+    "language": "html",
+    "content": "<!DOCTYPE html>\n<html>\n\n<head>\n  <title>Appstine Tech</title>\n</head>\n\n<body>\n\n  <!-- Header Section -->\n  <header>\n    <h1>Appstine Tech</h1>\n    <p>Innovating Technology for Everyday Life</p>\n  </header>\n\n  <!-- About Section -->\n  <section>\n    <h2>About Us</h2>\n    <p>\n      Appstine Tech is dedicated to making life easier through modern technology.\n      We develop innovative solutions that help individuals and businesses\n      improve efficiency and productivity.\n    </p>\n  </section>\n\n  <!-- Services Section -->\n  <section>\n    <h2>Our Services</h2>\n    <ul>\n      <li>Website Development</li>\n      <li>Mobile App Development</li>\n      <li>IT Support</li>\n      <li>Technology Consulting</li>\n    </ul>\n  </section>\n\n  <!-- Mission Section -->\n  <section>\n    <h2>Our Mission</h2>\n    <p>\n      Our mission is to provide reliable and innovative technological\n      solutions that simplify everyday tasks and improve digital experiences.\n    </p>\n  </section>\n\n  <!-- Contact Section -->\n  <section>\n    <h2>Contact Us</h2>\n    <p>Email: adjeibisimms76@gmail.com</p>\n    <p>Phone: +233 2470 505 73</p>\n  </section>\n\n  <!-- Footer -->\n  <footer>\n    <p>© 2026 Appstine Tech. All rights reserved.</p>\n  </footer>\n<!--Credit tag-->\n  <p>\n    Built by Innovatex Software Engineering Co. Ltd.\n  </p>\n</body>\n\n</html>"
+  },
+  "style": {
+    "language": "css",
+    "content": "/* General page styling */\nbody{\n  font-family: Arial, sans-serif;\n  margin: 0;\n  padding: 0;\n  background-color: #f4f4f4;\n}\n\n/* Header styling */\nheader{\n  background-color: #0a4fa3;\n  color: white;\n  text-align: center;\n  padding: 20px;\n}\n\n/* Section styling */\nsection{\n  background-color: white;\n  margin: 20px;\n  padding: 20px;\n  border-radius: 8px;\n}\n\n/* Section headings */\nh2{\n  color: #0a4fa3;\n}\n\n/* List styling */\nul{\n  padding-left: 20px;\n}\n\n/* Footer styling */\nfooter{\n  background-color: #222;\n  color: white;\n  text-align: center;\n  padding: 15px;\n}"
+  },
+  "script": {
+    "language": "javascript",
+    "content": "// Welcome message\nfunction welcomeMessage() {\n  alert(\"Welcome to Appstine Tech! We make technology easier for you.\");\n}\n\n// Show message when the page loads\nwindow.onload = welcomeMessage;\n\n\n// Button action example\nfunction contactMessage() {\n  alert(\"Thank you for contacting Appstine Tech. We will get back to you soon.\");\n}"
+  },
+  "stylesheets": [],
+  "scripts": [],
+  "cssPreset": "",
+  "processors": [],
+  "customSettings": {},
+  "imports": {},
+  "types": {},
+  "tests": {
+    "language": "typescript",
+    "content": ""
+  },
+  "version": "48"
+}
