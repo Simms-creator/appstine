@@ -5,63 +5,204 @@
 }</script></head><body>
 
 
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Appstine Tech</title>
 
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+
+    body {
+      background: #f5f5f5;
+      color: #333;
+      transition: 0.3s;
+    }
+
+    body.dark {
+      background: #121212;
+      color: #eee;
+    }
+
+    header {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2575fc;
+    }
+
+    body.dark h2 {
+      color: #9ecbff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #333;
+      color: #fff;
+    }
+
+    .credit {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #2575fc;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .video-preview {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .video-preview img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 60px;
+      color: white;
+      background: rgba(0,0,0,0.6);
+      border-radius: 50%;
+      padding: 10px 20px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .modal-content {
+      width: 90%;
+      max-width: 800px;
+      position: relative;
+    }
+
+    iframe {
+      width: 100%;
+      height: 450px;
+      border-radius: 12px;
+    }
+
+    .close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .unmute-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #ff3c6e;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
 
 
 
-  <!-- Header Section -->
+
+  <button class="toggle" onclick="toggleDark()">🌙 Dark Mode</button>
+
   <header>
     <h1>Appstine Tech</h1>
     <p>Innovating Technology for Everyday Life</p>
   </header>
 
-  <!-- About Section -->
   <section>
     <h2>About Us</h2>
-    <p>
-      Appstine Tech is dedicated to making life easier through modern technology.
-      We develop innovative solutions that help individuals and businesses
-      improve efficiency and productivity.
-    </p>
+    <p>Appstine Tech is dedicated to making life easier through modern technology.</p>
   </section>
 
-  <!-- Services Section -->
+  <!-- VIDEO -->
   <section>
-    <h2>Our Services</h2>
-    <ul>
-      <li>Website Development</li>
-      <li>Mobile App Development</li>
-      <li>IT Support</li>
-      <li>Technology Consulting</li>
-    </ul>
+    <h2>Watch Our Feature</h2>
+    <div class="video-preview" onclick="openVideo()">
+      <img src="https://img.youtube.com/vi/03gy_O5w_8U/maxresdefault.jpg">
+      <div class="play-btn">▶</div>
+    </div>
   </section>
 
-  <!-- Mission Section -->
-  <section>
-    <h2>Our Mission</h2>
-    <p>
-      Our mission is to provide reliable and innovative technological
-      solutions that simplify everyday tasks and improve digital experiences.
-    </p>
-  </section>
+  <!-- MODAL -->
+  <div class="modal" id="videoModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeVideo()">✖</span>
+      <iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen="">
+      </iframe>
+    </div>
 
-  <!-- Contact Section -->
-  <section>
-    <h2>Contact Us</h2>
-    <p>Email: adjeibisimms76@gmail.com</p>
-    <p>Phone: +233 2470 505 73</p>
-  </section>
+    <button class="unmute-btn" onclick="unmuteVideo()">🔊 Unmute</button>
+  </div>
 
-  <!-- Footer -->
   <footer>
     <p>© 2026 Appstine Tech. All rights reserved.</p>
   </footer>
-<!--Credit tag-->
-  <p>
+
+  <div class="credit">
     Built by Innovatex Software Engineering Co. Ltd.
-  </p>
+  </div>
+
+  <script>
+    function openVideo() {
+      document.getElementById("videoModal").style.display = "flex";
+      document.getElementById("videoFrame").src =
+        "https://www.youtube.com/embed/03gy_O5w_8U?autoplay=1&mute=1";
+    }
+
+    function closeVideo() {
+      document.getElementById("videoModal").style.display = "none";
+      document.getElementById("videoFrame").src = "";
+    }
+
+    function unmuteVideo() {
+      document.getElementById("videoFrame").src =
+        "https://www.youtube.com/embed/03gy_O5w_8U?autoplay=1";
+    }
+
+    function toggleDark() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
 
 
 <script src="./script.js"></script></body></html>
