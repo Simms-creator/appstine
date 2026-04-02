@@ -11,198 +11,110 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background: #f5f5f5; color: #333; transition: 0.3s; }
+    body.dark { background: #121212; color: #eee; }
 
-    body {
-      background: #f5f5f5;
-      color: #333;
-      transition: 0.3s;
-    }
+    header { background: linear-gradient(90deg, #6a11cb, #2575fc); color: white; padding: 60px 20px; text-align: center; }
+    section { padding: 50px 20px; max-width: 900px; margin: auto; }
+    h2 { text-align: center; margin-bottom: 20px; color: #2575fc; }
+    body.dark h2 { color: #9ecbff; }
+    footer { text-align: center; padding: 20px; background: #333; color: #fff; }
+    .credit { text-align: center; margin-top: 10px; }
 
-    body.dark {
-      background: #121212;
-      color: #eee;
-    }
+    .toggle { position: fixed; top: 15px; right: 15px; background: #2575fc; color: white; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; }
 
-    header {
-      background: linear-gradient(90deg, #6a11cb, #2575fc);
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
+    .video-preview { position: relative; cursor: pointer; margin-bottom: 30px; }
+    .video-preview img { width: 100%; border-radius: 12px; }
+    .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 60px; color: white; background: rgba(0,0,0,0.6); border-radius: 50%; padding: 10px 20px; }
 
-    section {
-      padding: 50px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; flex-direction: column; animation: fadeIn 0.3s; }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #2575fc;
-    }
-
-    body.dark h2 {
-      color: #9ecbff;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #333;
-      color: #fff;
-    }
-
-    .credit {
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .toggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: #2575fc;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .video-preview {
-      position: relative;
-      cursor: pointer;
-    }
-
-    .video-preview img {
-      width: 100%;
-      border-radius: 12px;
-    }
-
-    .play-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 60px;
-      color: white;
-      background: rgba(0,0,0,0.6);
-      border-radius: 50%;
-      padding: 10px 20px;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-    .modal-content {
-      width: 90%;
-      max-width: 800px;
-      position: relative;
-    }
-
-    iframe {
-      width: 100%;
-      height: 450px;
-      border-radius: 12px;
-    }
-
-    .close {
-      position: absolute;
-      top: -40px;
-      right: 0;
-      font-size: 30px;
-      color: white;
-      cursor: pointer;
-    }
-
-    .unmute-btn {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #ff3c6e;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+    .modal-content { width: 90%; max-width: 800px; position: relative; }
+    iframe { width: 100%; height: 450px; border-radius: 12px; }
+    .close { position: absolute; top: -40px; right: 0; font-size: 30px; color: white; cursor: pointer; }
+    .unmute-btn, .download-btn { margin-top: 15px; padding: 10px 20px; background: #ff3c6e; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-right: 10px; }
+    .download-btn { background: #2575fc; text-decoration: none; display: inline-block; }
   </style>
 
 
 
 
-  <button class="toggle" onclick="toggleDark()">🌙 Dark Mode</button>
+<button class="toggle" onclick="toggleDark()" id="darkBtn">🌙 Dark Mode</button>
 
-  <header>
-    <h1>Appstine Tech</h1>
-    <p>Innovating Technology for Everyday Life</p>
-  </header>
+<header>
+  <h1>Appstine Tech</h1>
+  <p>Innovating Technology for Everyday Life</p>
+</header>
 
-  <section>
-    <h2>About Us</h2>
-    <p>Appstine Tech is dedicated to making life easier through modern technology.</p>
-  </section>
+<section>
+  <h2>Our Videos</h2>
 
-  <!-- VIDEO -->
-  <section>
-    <h2>Watch Our Feature</h2>
-    <div class="video-preview" onclick="openVideo()">
-      <img src="https://img.youtube.com/vi/03gy_O5w_8U/maxresdefault.jpg">
-      <div class="play-btn">▶</div>
-    </div>
-  </section>
-
-  <!-- MODAL -->
-  <div class="modal" id="videoModal">
-    <div class="modal-content">
-      <span class="close" onclick="closeVideo()">✖</span>
-      <iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen="">
-      </iframe>
-    </div>
-
-    <button class="unmute-btn" onclick="unmuteVideo()">🔊 Unmute</button>
+  <!-- Video 1 -->
+  <div class="video-preview" onclick="openVideo('video1')">
+    <img src="https://img.youtube.com/vi/03gy_O5w_8U/maxresdefault.jpg">
+    <div class="play-btn">▶</div>
+    <a class="download-btn" href="https://www.youtube.com/watch?v=03gy_O5w_8U" target="_blank">⬇ Download</a>
   </div>
 
-  <footer>
-    <p>© 2026 Appstine Tech. All rights reserved.</p>
-  </footer>
-
-  <div class="credit">
-    Built by Innovatex Software Engineering Co. Ltd.
+  <!-- Video 2 -->
+  <div class="video-preview" onclick="openVideo('video2')">
+    <img src="https://img.youtube.com/vi/Ob4mAMCvNIg/maxresdefault.jpg">
+    <div class="play-btn">▶</div>
+    <a class="download-btn" href="https://www.youtube.com/watch?v=Ob4mAMCvNIg" target="_blank">⬇ Download</a>
   </div>
+</section>
 
-  <script>
-    function openVideo() {
-      document.getElementById("videoModal").style.display = "flex";
-      document.getElementById("videoFrame").src =
-        "https://www.youtube.com/embed/03gy_O5w_8U?autoplay=1&mute=1";
-    }
+<!-- Modal -->
+<div class="modal" id="videoModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeVideo()">✖</span>
+    <iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+  </div>
+  <button class="unmute-btn" onclick="unmuteVideo()">🔊 Unmute</button>
+</div>
 
-    function closeVideo() {
-      document.getElementById("videoModal").style.display = "none";
-      document.getElementById("videoFrame").src = "";
-    }
+<footer>
+  <p>© 2026 Appstine Tech. All rights reserved.</p>
+</footer>
 
-    function unmuteVideo() {
-      document.getElementById("videoFrame").src =
-        "https://www.youtube.com/embed/03gy_O5w_8U?autoplay=1";
-    }
+<div class="credit">
+  Built by Innovatex Software Engineering Co. Ltd.
+</div>
 
-    function toggleDark() {
-      document.body.classList.toggle("dark");
+<script>
+  let currentVideo = '';
+
+  function openVideo(video) {
+    document.getElementById("videoModal").style.display = "flex";
+    currentVideo = video;
+
+    if(video === 'video1'){
+      document.getElementById("videoFrame").src = "https://www.youtube.com/embed/03gy_O5w_8U?autoplay=1&mute=1";
+    } else if(video === 'video2'){
+      document.getElementById("videoFrame").src = "https://www.youtube.com/embed/Ob4mAMCvNIg?autoplay=1&mute=1";
     }
-  </script>
+  }
+
+  function closeVideo() {
+    document.getElementById("videoModal").style.display = "none";
+    document.getElementById("videoFrame").src = "";
+  }
+
+  function unmuteVideo() {
+    if(currentVideo === 'video1'){
+      document.getElementById("videoFrame").src = "https://www.youtube.com/embed/03gy_O5w_8U?autoplay=1";
+    } else if(currentVideo === 'video2'){
+      document.getElementById("videoFrame").src = "https://www.youtube.com/embed/Ob4mAMCvNIg?autoplay=1";
+    }
+  }
+
+  function toggleDark() {
+    document.body.classList.toggle("dark");
+    let btn = document.getElementById("darkBtn");
+    btn.innerText = document.body.classList.contains("dark") ? "☀ Light Mode" : "🌙 Dark Mode";
+  }
+</script>
 
 
 <script src="./script.js"></script></body></html>
